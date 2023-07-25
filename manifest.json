@@ -1,0 +1,19 @@
+{
+  "manifest_version": 3,
+  "name": "Quick Dictionary",
+  "version": "1.0",
+  "description": "Quickly view the definition of a word when highlighted.",
+  "icons": {
+    "16": "images/quick-dictionary_16.png",
+    "32": "images/quick-dictionary_32.png",
+    "48": "images/quick-dictionary_48.png",
+    "128": "images/quick-dictionary_128.png"
+  },
+  "content_scripts": [
+    {
+        "matches": ["https://*/*"],
+        "js": ["scripts/quick-dictionary.js"],
+        "css": ["styles/style.css"]
+    }
+  ]
+}

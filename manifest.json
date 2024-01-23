@@ -5,13 +5,31 @@
   "author": "Asha Ivey",
   "description": "Quickly view the definition of a word when highlighted.",
   "icons": {
-    "16": "images/quick-dictionary_16.png",
-    "32": "images/quick-dictionary_32.png",
-    "48": "images/quick-dictionary_48.png",
-    "128": "images/quick-dictionary_128.png"
+    "16": "images/quick-dictionary-logo_16.png",
+    "32": "images/quick-dictionary-logo_32.png",
+    "48": "images/quick-dictionary-logo_48.png",
+    "128": "images/quick-dictionary-logo.png"
   },
+  "permissions": [
+    "activeTab",
+    "tabs",
+    "http://*/*", "https://*/*"
+  ],
   "action":{
-    "default_popup": "index.html",
     "default_title": "Quick Dictionary"
-  }
+  },
+  "content_scripts": [
+    {
+      "run_at": "document_end",
+      "matches": ["<all_urls>"],
+      "js": ["scripts/quick-dictionary.js"],
+      "css": ["styles/style.css", "styles/bootstrap-theme.min.css", "styles/bootstrap.min.css"]
+    }
+  ], 
+  "web_accessible_resources": [
+    {
+      "resources": ["fonts/RobotoSlab-Light.ttf", "images/quick-dictionary-logo-long.png"],
+      "matches": ["<all_urls>"]
+    }
+  ]
 }

@@ -28,7 +28,7 @@
   ], 
   "web_accessible_resources": [
     {
-      "resources": ["fonts/RobotoSlab-Light.ttf", "images/quick-dictionary-logo-long.png"],
+      "resources": ["fonts/RobotoSlab-Light.ttf", "images/quick-dictionary-logo-long.svg"],
       "matches": ["<all_urls>"]
     }
   ]

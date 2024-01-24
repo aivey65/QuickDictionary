@@ -77,7 +77,7 @@ function createLogo() {
     logoContainer.id = "logo-container";
 
     const logoImg = document.createElement("img");
-    logoImg.src = chrome.runtime.getURL("images/quick-dictionary-logo-long.png");
+    logoImg.src = chrome.runtime.getURL("images/quick-dictionary-logo-long.svg");
     logoImg.alt = "Quick dictionary logo";
 
     logoContainer.append(logoImg);

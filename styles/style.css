@@ -1,6 +1,6 @@
 :root {
     --Background: #EAE6E5;
-    --Text: #12130F;
+    --Text: #514A41;
     --Light: #EAE6E5;
     --Dark: #12130F;
     --AccentL: #8FCB9B;
@@ -34,6 +34,10 @@ hr {
     background-color: var(--DarkGrey);
     width: 100%;
     height: 100%;
+    display: flex;
+    justify-content: center;
+    border-radius: var(--lgPad) var(--lgPad) 0px 0px;
+    padding: var(--smallPad);
 }
 
 #logo-container img {
@@ -43,16 +47,20 @@ hr {
 
 #quick-dictionary-popup {
     font-family: 'Roboto Slab', serif !important;
-    padding: var(--lgPad);
+    font-size: 1.6rem;
     background-color: var(--Background);
     color: var(--Text);
-    max-width: 50%;
-
+    width: min-content;
+    min-width: 30%;
+    display: flex;
+    justify-content: center;
     position: fixed;
-    top: 0px;
-    right: 0px;
+    top: var(--smallGap);
+    right: var(--smallGap);
     z-index: +2000;
-    border-radius: 30px;
+    border-radius: var(--lgPad);
+    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .5);
+    overflow: scroll;
 }
 
 #qd-header {
@@ -60,6 +68,7 @@ hr {
     flex-direction: row;
     align-items: center;
     gap: var(--smallGap);
+    padding: var(--smallPad) var(--lgPad);
 }
 
 #results-header {
@@ -72,6 +81,11 @@ hr {
 #results-section {
     display: flex;
     flex-direction: column;
+    padding: var(--smallPad) var(--lgPad);
+}
+
+#definition {
+    margin-left: var(--lgPad);
 }
 
 #definition li {

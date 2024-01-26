@@ -1,123 +1,139 @@
 :root {
-    --Background: #EAE6E5;
-    --Text: #514A41;
-    --Light: #EAE6E5;
-    --Dark: #12130F;
-    --AccentL: #8FCB9B;
-    --AccentM: #5B9279;
-    --AccentD: #375344;
-    --Grey: #8F8073;
-    --DarkGrey: #514A41;
+    --BackgroundQD: #EAE6E5;
+    --TextQD: #514A41;
+    --LightQD: #EAE6E5;
+    --DarkQD: #12130F;
+    --AccentLQD: #8FCB9B;
+    --AccentMQD: #5B9279;
+    --AccentDQD: #375344;
+    --GreyQD: #8F8073;
+    --DarkGreyQD: #514A41;
 
-    --smallGap: 5px;
-    --smallPad: 10px;
-    --medPad: 20px;
-    --lgPad: 30px;
-    --megaPad: 50px;
+    --smallGapQD: 5px;
+    --smallPadQD: 10px;
+    --medPadQD: 20px;
+    --lgPadQD: 30px;
+    --megaPadQD: 50px;
 }
 
 @font-face {
-    font-family: 'Roboto Slab';
-    src: url("chrome-extension://jffpfohbgkknfbnfngdbaifoleoifgbp/fonts/RobotoSlab-Light.ttf");
+    font-family: 'Roboto Slab' !important;
+    src: url("chrome-extension://jffpfohbgkknfbnfngdbaifoleoifgbp/fonts/RobotoSlab-Light.ttf") !important;
 }
 
-p, h2, h3 {
-    margin: 0px;
+.qd-h1, .qd-h2, .qd-h3, .qd-h4, .qd-p, .qd-button, #quick-dictionary-popup li {
+    color: var(--TextQD) !important;
 }
 
-hr {
-    border-top: 2px solid var(--Grey) !important;
+.qd-h1 {
+    font-size: 1.5rem;
+    line-height: normal;
+}
+
+.qd-h2 {
+    font-size: 1.3rem;
+}
+
+.qd-p {
+    font-size: 1rem;
+}
+
+.qd-p, .qd-h2, .qd-h3 {
     margin: 0px !important;
 }
 
-#logo-container {
-    background-color: var(--DarkGrey);
+.qd-hr {
+    border-top: 2px solid var(--GreyQD) !important;
+    margin: 0px !important;
+}
+
+#qd-logo-container {
+    background-color: var(--DarkGreyQD) !important;
     width: 100%;
     height: 100%;
     display: flex;
     justify-content: center;
-    border-radius: var(--lgPad) var(--lgPad) 0px 0px;
-    padding: var(--smallPad);
+    border-radius: var(--lgPadQD) var(--lgPadQD) 0px 0px;
+    padding: var(--smallPadQD);
 }
 
-#logo-container img {
+#qd-logo-container img {
     height: 10vh;
     width: auto;
 }
 
 #quick-dictionary-popup {
     font-family: 'Roboto Slab', serif !important;
-    font-size: 1.6rem;
-    background-color: var(--Background);
-    color: var(--Text);
+    background-color: var(--BackgroundQD);
+    color: var(--TextQD);
     width: min-content;
     min-width: 30%;
     display: flex;
     justify-content: center;
     position: fixed;
-    top: var(--smallGap);
-    right: var(--smallGap);
+    top: var(--smallGapQD);
+    right: var(--smallGapQD);
     z-index: +2000;
-    border-radius: var(--lgPad);
+    border-radius: var(--smallPadQD);
     box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .5);
-    overflow: scroll;
+    overflow: hidden;
 }
 
 #qd-header {
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: var(--smallGap);
-    padding: var(--smallPad) var(--lgPad);
+    gap: var(--smallGapQD);
+    padding: var(--smallPadQD) var(--lgPadQD);
 }
 
-#results-header {
+#qd-results-header {
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: var(--smallGap);
+    gap: var(--smallGapQD);
 }
 
-#results-section {
+#qd-results-section {
     display: flex;
     flex-direction: column;
-    padding: var(--smallPad) var(--lgPad);
+    padding: var(--smallPadQD) var(--lgPadQD);
 }
 
-#definition {
-    margin-left: var(--lgPad);
+#qd-definition {
+    margin-left: var(--lgPadQD);
 }
 
-#definition li {
+#qd-definition li {
     list-style-type: decimal;
 }
 
-#pos {
+#qd-pos {
     font-style: italic !important;
 }
 
-#source-link {
+#qd-source-link {
     grid-column: 3;
     justify-self: end;
     align-self: end;
-    margin-top: var(--medPad);
+    margin-top: var(--medPadQD);
 }
 
-button {
-    background-color: var(--AccentL) !important;
+.qd-button {
+    background-color: var(--AccentLQD) !important;
     transition: .3s;
 }
 
-button:hover {
+.qd-button:hover {
     cursor: pointer;
-    background-color: var(--AccentM) !important;
+    background-color: var(--AccentMQD) !important;
     color: var(--Light) !important;
 }
 
 /* Styling for the popup window */
 /* Created following these instructions: https://medium.com/front-end-weekly/creating-a-toggle-switch-in-css-2d23e496d035 */
 #qd-popup-body {
-    background-color: var(--Light);
+    background-color: var(--LightQD);
     width: max-content;
     text-align: center;
 }
@@ -125,38 +141,38 @@ button:hover {
 #qd-popup-header {
     font-size: 1.3rem;
     font-family: 'Roboto Slab', serif;
-    color: var(--Dark);
+    color: var(--TextQD);
 }
 
-.switch {
+.qd-switch {
     position: relative;
     display: inline-block;
     width: 40px;
     height: 20px;
-    background-color: var(--Grey);
-    border-radius: var(--medPad);
+    background-color: var(--GreyQD);
+    border-radius: var(--medPadQD);
 }
 
-.switch::after {
+.qd-switch::after {
     content: '';
     position: absolute;
     width: 18px;
     height: 18px;
     border-radius: 50%;
-    background-color: var(--Light);
+    background-color: var(--LightQD);
     top: 1px;
     left: 1px;
     transition: 0.3s;
 }
 
-.checkbox {
+.qd-checkbox {
     display: none;
 }
 
-.checkbox:checked + .switch::after {
+.qd-checkbox:checked + .qd-switch::after {
     left : 20px; 
 }
 
-.checkbox:checked + .switch {
-    background-color: var(--AccentL);
+.qd-checkbox:checked + .qd-switch {
+    background-color: var(--AccentLQD);
 }

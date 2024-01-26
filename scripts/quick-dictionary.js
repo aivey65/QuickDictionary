@@ -1,6 +1,15 @@
-console.log("crying")
+var detectingSelection = false;
 
-document.addEventListener("selectionchange", (event) => {
+document.addEventListener("selectionchange", () => {
+    detectingSelection = true;
+})
+
+document.addEventListener("mouseup", () => {
+    if (detectingSelection == false) {
+        return;
+    }
+
+    detectingSelection = false;
     const selection = document.getSelection().toString();
 
     if (!selection || selection == "" || selection.length <= 2) {
@@ -34,7 +43,8 @@ document.addEventListener("selectionchange", (event) => {
             }).then(data => {
                 console.log(data)
                 if (!data || data.length == 0) {
-                    hidePopup();
+                    qdPopup.innerHTML = "";       
+                    qdPopup.append(createLogo(), createFailurePanel(selection));
                     return;
                 }
                 qdPopup.innerHTML = "";

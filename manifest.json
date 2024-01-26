@@ -16,7 +16,8 @@
     "http://*/*", "https://*/*"
   ],
   "action":{
-    "default_title": "Quick Dictionary"
+    "default_title": "Quick Dictionary",
+    "default_popup": "popup.html"
   },
   "content_scripts": [
     {

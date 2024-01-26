@@ -1,85 +1,87 @@
-var detectingSelection = false;
+var detectingSelection = false; 
+chrome.storage.sync.set({'enabled': "true"});
 
 document.addEventListener("selectionchange", () => {
-    detectingSelection = true;
-})
+    chrome.storage.sync.get(["enabled"]).then((response) => {
+        if (response.enabled == "true") {
+            detectingSelection = true;
+        }
+    });
+});
 
 document.addEventListener("mouseup", () => {
-    if (detectingSelection == false) {
-        return;
-    }
+    chrome.storage.sync.get(["enabled"]).then((response) => {
+        if (response.enabled == "true" && detectingSelection == true) {
+            detectingSelection = false;
+            const selection = document.getSelection().toString();
 
-    detectingSelection = false;
-    const selection = document.getSelection().toString();
-
-    if (!selection || selection == "" || selection.length <= 2) {
-        hidePopup();
-        return;
-    }
-
-    const splitSelection = selection.split(" ");
-    if (splitSelection.length == 1) {
-        var qdPopup = document.getElementById("quick-dictionary-popup");
-        if (!qdPopup) {
-            qdPopup = document.createElement("div");
-            qdPopup.id = "quick-dictionary-popup";
-            document.body.append(qdPopup);
-        }
-
-        showPopup();
-
-        try {
-            // Use dictionary API to define the text/text phrase.
-            fetch("https://api.dictionaryapi.dev/api/v2/entries/en/" + selection)
-            .then(response => {
-                if (!response.ok) {
-                    qdPopup.innerHTML = "";       
-                    qdPopup.append(createLogo(), createFailurePanel(selection));
-
-                    return;
-                } else {
-                    return response.json()
-                }
-            }).then(data => {
-                console.log(data)
-                if (!data || data.length == 0) {
-                    qdPopup.innerHTML = "";       
-                    qdPopup.append(createLogo(), createFailurePanel(selection));
-                    return;
-                }
-                qdPopup.innerHTML = "";
-
-                const result = data[0];
-                const options = result.meanings;
-
-                // Find the most likely top definition based on how many definitions per part of speech
-                var definitionData;
-                var definitionMax = 0;
-                for (let option of options) {
-                    const newLength = option.definitions.length;
-                    if (newLength > definitionMax) {
-                        definitionData = option;
-                        definitionMax = newLength;
+            if (!selection || selection == "" || selection.length <= 2) {
+                hidePopup();
+            } else {
+                const splitSelection = selection.split(" ");
+                if (splitSelection.length == 1) {
+                    var qdPopup = document.getElementById("quick-dictionary-popup");
+                    if (!qdPopup) {
+                        qdPopup = document.createElement("div");
+                        qdPopup.id = "quick-dictionary-popup";
+                        document.body.append(qdPopup);
                     }
-                }
-
-                const resultPanel = createSuccessPanel(
-                    result.word, 
-                    result.phonetic, 
-                    definitionData.partOfSpeech, 
-                    definitionData.definitions.slice(0, 2),
-                    definitionData.synonyms.slice(0, 4),
-                    result.sourceUrl
-                );
-
-                qdPopup.append(createLogo(), resultPanel);
-            });
-        } catch (error) {
-            qdPopup.append(createLogo(), createFailurePanel(selection));
+            
+                    showPopup();
+            
+                    try {
+                        // Use dictionary API to define the text/text phrase.
+                        fetch("https://api.dictionaryapi.dev/api/v2/entries/en/" + selection)
+                        .then(response => {
+                            if (!response.ok) {
+                                return;
+                            } else {
+                                return response.json()
+                            }
+                        }).then(data => {
+                            if (!data || data.length == 0) {
+                                qdPopup.innerHTML = "";       
+                                qdPopup.append(createLogo(), createFailurePanel(selection));
+                                return;
+                            }
+                            qdPopup.innerHTML = "";
+            
+                            const result = data[0];
+                            const options = result.meanings;
+            
+                            // Find the most likely top definition based on how many definitions per part of speech
+                            var definitionData;
+                            var definitionMax = 0;
+                            for (let option of options) {
+                                const newLength = option.definitions.length;
+                                if (newLength > definitionMax) {
+                                    definitionData = option;
+                                    definitionMax = newLength;
+                                }
+                            }
+            
+                            const resultPanel = createSuccessPanel(
+                                result.word, 
+                                result.phonetic, 
+                                definitionData.partOfSpeech, 
+                                definitionData.definitions.slice(0, 2),
+                                definitionData.synonyms.slice(0, 4),
+                                result.sourceUrl
+                            );
+            
+                            qdPopup.append(createLogo(), resultPanel);
+                        });
+                    } catch (error) {
+                        qdPopup.append(createLogo(), createFailurePanel(selection));
+                    }
+                } else {
+                    hidePopup();
+                }            
+            }
+        } else {
+            hidePopup();
         }
-    } else {
-        hidePopup();
-    }
+    })
 })
 
 function createLogo() {

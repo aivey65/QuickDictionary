@@ -6,13 +6,13 @@
     <title>Quick Dictionary Settings</title>
 
     <link rel="stylesheet" href="styles/style.css">
-    <link rel="stylesheet" href="styles/bootstrap-theme.min.css">
-    <link rel="stylesheet" href="styles/bootstrap.min.css">
 </head>
-<body>
-    <div class="form-check form-switch">
-        <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
-        <label class="form-check-label" for="flexSwitchCheckChecked">Enable Quick Dictionary</label>
+<body id="qd-popup-body">
+    <h1 id="qd-popup-header">Enable Quick Dictionary</h1>
+    <div class="form-switch">
+        <input type="checkbox" name="qd-toggle" id="qd-toggle" class="checkbox"/>
+        <label for="qd-toggle" class="switch"></label>
     </div>
+    <script type="module" src="scripts/qd-config.js"></script>
 </body>
 </html>

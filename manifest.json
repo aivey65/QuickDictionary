@@ -11,6 +11,7 @@
     "128": "images/quick-dictionary-logo.png"
   },
   "permissions": [
+    "storage",
     "activeTab",
     "tabs",
     "http://*/*", "https://*/*"
@@ -18,15 +19,15 @@
   "action":{
     "default_title": "Quick Dictionary",
     "default_popup": "popup.html"
-  },
+  }, 
   "content_scripts": [
     {
       "run_at": "document_end",
       "matches": ["<all_urls>"],
       "js": ["scripts/quick-dictionary.js"],
-      "css": ["styles/style.css", "styles/bootstrap-theme.min.css", "styles/bootstrap.min.css"]
+      "css": ["styles/style.css"]
     }
-  ], 
+  ],
   "web_accessible_resources": [
     {
       "resources": ["fonts/RobotoSlab-Light.ttf", "images/quick-dictionary-logo-long.svg"],
